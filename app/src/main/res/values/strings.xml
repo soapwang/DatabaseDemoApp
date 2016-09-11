@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Note</string>
+    <string name="button_done">Done</string>
+    <string name="button_discard">Discard</string>
+    <string name="hint_title">Type title here</string>
+    <string name="discard_notice">Exit without saving?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_title">No title</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="saved">Saved!</string>
+    <string name="delete_confirm">Delete this note?</string>
+</resources>
