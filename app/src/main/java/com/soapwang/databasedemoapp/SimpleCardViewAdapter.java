@@ -64,6 +64,11 @@ public class SimpleCardViewAdapter extends RecyclerView.Adapter<SimpleCardViewAd
         }
     }
 
+    public void swap(ArrayList<MyNote> list) {
+        mItems = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return mItems.size();

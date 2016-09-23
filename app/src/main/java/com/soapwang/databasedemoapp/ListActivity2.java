@@ -26,7 +26,6 @@ public class ListActivity2 extends AppCompatActivity {
     MyNote listItem;
     Cursor c;
     String noteId;
-    boolean newNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +43,9 @@ public class ListActivity2 extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new SimpleCardViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ListActivity2.this, position + " click", Toast.LENGTH_SHORT).show();
                 noteId = noteArrayList.get(position).getId();
                 startNoteActivity(false);
             }
-
             @Override
             public void onItemLongClick(View view, int position) {
                 Toast.makeText(ListActivity2.this, position + " long click", Toast.LENGTH_SHORT).show();
@@ -56,15 +53,13 @@ public class ListActivity2 extends AppCompatActivity {
         });
         mRecyclerView.setAdapter(mAdapter);
 
-    /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startNoteActivity(true);
             }
-        });*/
+        });
     }
 
     public void refreshList() {
@@ -84,6 +79,16 @@ public class ListActivity2 extends AppCompatActivity {
         }
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                refreshList();
+                mAdapter.swap(noteArrayList);
+            }
+        }
+    }
+
     public void startNoteActivity(boolean isNew) {
         if(isNew) {
             Intent i = new Intent(ListActivity2.this, NoteActivity.class);
@@ -95,7 +100,4 @@ public class ListActivity2 extends AppCompatActivity {
             startActivityForResult(i, 1);
         }
     }
-
-
-
 }
